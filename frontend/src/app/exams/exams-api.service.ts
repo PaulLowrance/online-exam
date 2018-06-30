@@ -1,26 +1,20 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import {API_URL} from '../env';
-import {Exam} from './exam.model';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Exam } from '../exams/exam.model';
+import { API_URL } from '../env';
 
-@Injectable()
 
+@Injectable(/* {
+  providedIn: 'root'
+} */)
 export class ExamsApiService {
 
-    constructor(private http: HttpClient){
+  constructor(private http: HttpClient) {
 
-    }
+  }
 
-    private static _handleError(err: HttpErrorResponse | any ){
-        return Observable.throw(err.message || 'Error : Unable to complete the request');        
-    }
-
-      // GET list of public, future events
-  getExams(): Observable<any> {
-    return this.http
-      .get<Exam[]>({API_URL} + '/exams')
-      .catch(ExamsApiService._handleError);
+  getExams(): Observable<Exam[]> {
+   return this.http.get<any>(`${API_URL}/exams`);
   }
 }

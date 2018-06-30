@@ -6,5 +6,5 @@ export class Exam {
         public updatedAt?: Date,
         public createdAt?: Date,
         public lastUpdatedBy?: string,
-    ){}
+    ) {}
 }
